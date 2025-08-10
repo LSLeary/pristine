@@ -1,0 +1,67 @@
+cabal-version:      3.0
+name:               dev
+version:            0.1.0.0
+build-type:         Simple
+
+common  shared
+  default-language:   Haskell2010
+  default-extensions: RoleAnnotations
+                      PolyKinds
+                      ConstraintKinds
+                      KindSignatures
+                      StandaloneKindSignatures
+                      ScopedTypeVariables
+                      TypeApplications
+                      TypeOperators
+                      FlexibleContexts
+                      FlexibleInstances
+                      DeriveGeneric
+                      DeriveTraversable
+                      DeriveAnyClass
+                      DerivingVia
+                      GeneralisedNewtypeDeriving
+                      StandaloneDeriving
+                      BangPatterns
+                      BlockArguments
+                      LambdaCase
+                      NamedFieldPuns
+                      LexicalNegation
+                      TupleSections
+                      NumericUnderscores
+                      PostfixOperators
+  ghc-options:        -Wall
+                      -Wcompat
+
+library
+  import:             shared,
+  hs-source-dirs:     core/src/core,
+                      core/src/sanity,
+                      analysis/src,
+                      vis-Chart/src/vis-Chart,
+                      vis-Chart/src/rendering-cairo,
+                      vis-Chart/src/rendering-diagrams,
+                      example/src
+  build-depends:      base,
+                      primitive,
+                      deepseq,
+                      transformers,
+                      vector,
+                      bytestring,
+                      text,
+                      filepath,
+                      directory,
+                      containers,
+                      stm,
+                      ki,
+                      random,
+                      cassava,
+                      poly,
+                      hmatrix,
+                      ansi-terminal,
+                      colour,
+                      data-default-class,
+                      Chart,
+                      Chart-cairo,
+                      Chart-diagrams,
+  ghc-options:        -Wno-missing-home-modules
+

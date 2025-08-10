@@ -1,0 +1,6 @@
+packages:
+  ./core
+  ./analysis
+  ./vis-Chart
+  ./example
+  dev.cabal

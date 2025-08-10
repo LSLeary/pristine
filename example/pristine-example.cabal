@@ -1,0 +1,73 @@
+cabal-version:      3.0
+name:               pristine-example
+version:            0.1.0.0
+synopsis:           A pristine example
+description:
+  An annotated example benchmark showing how /pristine/, /pristine-analysis/ & /pristine-vis-Chart/ can all be used together.
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             L. S. Leary
+maintainer:         L.S.Leary.II@gmail.com
+copyright:          (c) 2026 L. S. Leary
+category:           Benchmarking Statistics Charts
+build-type:         Simple
+tested-with:        GHC == 9.6.7
+                    GHC == 9.8.4
+                    GHC == 9.10.2
+                    GHC == 9.12.2
+                 -- Requires --allow-newer=all:base
+                 -- (dependencies require revision)
+                 -- GHC == 9.14.1
+
+common  shared
+  build-depends:      base >= 4.18 && < 4.23,
+  default-language:   Haskell2010
+  default-extensions: RoleAnnotations
+                      PolyKinds
+                      ConstraintKinds
+                      KindSignatures
+                      StandaloneKindSignatures
+                      ScopedTypeVariables
+                      TypeApplications
+                      TypeOperators
+                      FlexibleContexts
+                      FlexibleInstances
+                      DeriveGeneric
+                      DeriveTraversable
+                      DeriveAnyClass
+                      DerivingVia
+                      GeneralisedNewtypeDeriving
+                      StandaloneDeriving
+                      BangPatterns
+                      BlockArguments
+                      LambdaCase
+                      NamedFieldPuns
+                      LexicalNegation
+                      TupleSections
+                      NumericUnderscores
+                      PostfixOperators
+  ghc-options:        -Wall
+                      -Wcompat
+
+common    example
+  hs-source-dirs:     src/
+  build-depends:      primitive          >= 0.8       && < 0.10,
+                      text               >= 1.2.2     && < 2.2 ,
+                      filepath           >= 1.4.100.0 && < 1.6 ,
+                      stm                >= 2.1       && < 2.6 ,
+                      ki                 >= 1         && < 1.1 ,
+                      pristine           >= 0.1       && < 0.2 ,
+                      pristine-analysis  >= 0.1       && < 0.2 ,
+                      pristine-vis-Chart >= 0.1       && < 0.2 ,
+                      pristine-vis-Chart:rendering-cairo,
+  other-modules:      Pristine.Example
+benchmark example
+  import:             shared, example,
+  type:               exitcode-stdio-1.0
+  main-is:            Main.hs
+  ghc-options:        -fproc-alignment=64 -threaded "-with-rtsopts=-N4 -T"
+
+source-repository head
+  type:     git
+  location: https://github.com/LSLeary/pristine.git
+
